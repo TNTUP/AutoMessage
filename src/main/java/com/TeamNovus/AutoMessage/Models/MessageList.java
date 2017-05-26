@@ -1,6 +1,5 @@
 package com.TeamNovus.AutoMessage.Models;
 
-import java.lang.reflect.Constructor;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
