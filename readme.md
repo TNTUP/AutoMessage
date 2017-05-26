@@ -29,7 +29,7 @@ Result: ![Result](https://i.qcfb.ca/20170526010833.png)
 
 ```yml
     prefix: "[&bPrefix&r] \n"
-    suffix: " [&4Suffix&r] \n"
+    suffix: "\n [&4Suffix&r]"
 ```
 Result: ![Result2](https://i.qcfb.ca/20170526010706.png)
 ...and poof it works!!!
