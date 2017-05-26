@@ -1,5 +1,6 @@
 package com.TeamNovus.AutoMessage.Models;
 
+import java.lang.reflect.Constructor;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +16,8 @@ public class MessageList {
 	private int interval = 45;
 	private long expiry = -1L;
 	private boolean random = false;
+	private String prefix = "[&bPrefix&r] ";
+	private String suffix = " [&4Suffix&r]";
 	private List<Message> messages = new LinkedList<Message>();
 
 	private transient int currentIndex = 0;
@@ -57,6 +60,22 @@ public class MessageList {
 		return random;
 	}
 
+	public String getPrefix() {		
+		return prefix;		
+	}
+	
+	public void setPrefix(String prefix) {
+		this.prefix = prefix;
+	}
+	
+	public String getSuffix() {
+		return suffix;
+	}
+	
+	public void setSuffix(String suffix) {
+		this.suffix = suffix;
+	}
+	
 	public void setRandom(boolean random) {
 		this.random = random;
 	}
@@ -138,7 +157,15 @@ public class MessageList {
 
 			for (int i = 0; i < messages.size(); i++) {
 				String m = messages.get(i);
-
+				
+				if(i == 0) {
+					m = getPrefix() + m;
+				}
+				
+				if(i == messages.size() - 1) {
+					m = m + getSuffix();
+				}
+				
 				if (to instanceof Player) {
 					if (m.contains("{NAME}"))
 						m = m.replace("{NAME}", ((Player) to).getName());
@@ -195,7 +222,7 @@ public class MessageList {
 					try {
 						// Parse the message
 						Object parsedMessage = Class.forName("net.minecraft.server." + v + ".IChatBaseComponent$ChatSerializer").getMethod("a", String.class).invoke(null, ChatColor.translateAlternateColorCodes("&".charAt(0), m));
-						Object packetPlayOutChat = Class.forName("net.minecraft.server." + v + ".PacketPlayOutChat").getConstructor(Class.forName("net.minecraft.server." + v + ".IChatBaseComponent")).newInstance(parsedMessage);
+						Object packetPlayOutChat = (Class.forName("net.minecraft.server." + v + ".PacketPlayOutChat").getConstructor(Class.forName("net.minecraft.server." + v + ".IChatBaseComponent")).newInstance(parsedMessage));
 
 						// Drill down to the playerConnection which calls the sendPacket method
 						Object craftPlayer = Class.forName("org.bukkit.craftbukkit." + v + ".entity.CraftPlayer").cast(to);
