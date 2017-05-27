@@ -1,6 +1,6 @@
 Unofficial fork of AutoMessage by ELCHILEN0. 
 
-# WARNING YOU HAVE BEEN WARNED, THIS FORK BREAKS THE JSON CAPABILITY BECAUSE I HAVE ADDED SUFFIXES/PREFIXES!!!!
+# WARNING YOU HAVE BEEN WARNED, THIS IS AN UNOFFICIAL FORK!!!
 
 This fork readds the removed suffixes/prefixes which ELCHILEN0 removed (probably due to JSON or idk why...)
 
@@ -37,3 +37,22 @@ Result: ![Result2](https://i.qcfb.ca/20170526010706.png)
 Although I'm quite a oldschool guy. I know JSON is way prettier than regular but I was sad when the dev removed the support of prefix/suffixes. I have readded them back (Sorry, looked at the commit when you have removed it, forgive me :'(
 
 but beware, don't use it if you love JSON. It breaks it and I don't care fixing it for my server. But for others, better asking to ELCHILEN0 instead.
+
+NEW! Fixed my own JSON issue because of the readdition of p/s, there's a workaround to get it to work:
+
+```yml
+message-lists:
+  json:
+    enabled: true
+    interval: 45
+    expiry: -1
+    random: false
+    prefix: '[{"text":"[&bPrefix&r] "},'
+    suffix: '{"text":" [&4Suffix&r]"}]'
+    messages:
+    - |-
+      {
+        "text": "Your JSON messages here!!"
+      },
+'''
+Result: ![Result3](https://i.qcfb.ca/20170527060318.png)
