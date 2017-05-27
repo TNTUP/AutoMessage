@@ -15,21 +15,13 @@ settings:
   min-players: 0
   log-to-console: false
 message-lists:
-  regular:
-    enabled: true
-    random: false
-    interval: 45
-    expiry: -1
-    messages:
-    - '&1First&r message \nin the default list!'
-    - '&2Second&r message \nin the default list!'
-    - '&3Third&r message \nin the default list!'
-    - 'These messages will be displayed to users with \nautomessage.receive.regular!'
   json:
     enabled: true
-    random: false
     interval: 45
     expiry: -1
+    random: false
+    prefix: '[{"text":"[&bPrefix&r] "},'
+    suffix: '{"text":" [&4Suffix&r]"}]'
     messages:
     - |-
       {
@@ -43,7 +35,7 @@ message-lists:
               }
             ]
         }
-      }
+      },
     - |-
       {
         "text": "Click me to run a command!",
@@ -51,7 +43,7 @@ message-lists:
           "action": "run_command",
           "value": "/say Clicked."
         }
-      }
+      },
     - |-
       {
         "text": "Click me to open Google!",
@@ -59,4 +51,16 @@ message-lists:
           "action": "open_url",
           "value": "http://google.com"
         }
-      }
+      },
+  regular:
+    enabled: true
+    interval: 45
+    expiry: -1
+    random: false
+    prefix: '[&bPrefix&r] '
+    suffix: ' [&4Suffix&r]'
+    messages:
+    - '&1First&r message \nin the default list!'
+    - '&2Second&r message \nin the default list!'
+    - '&3Third&r message \nin the default list!'
+    - These messages will be displayed to users with \nautomessage.receive.regular!
